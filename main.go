@@ -22,7 +22,7 @@ func main() {
 	db := initDB()
 	db.Ping()
 
-	session := initSession()
+	// session := initSession()
 }
 
 func initDB() *sql.DB {
@@ -43,7 +43,7 @@ func connectToDB() *sql.DB {
 	for {
 		connection, err := openDB(dsn)
 		if err != nil {
-			log.Println("DB not ready")
+			log.Println(err)
 		} else {
 			log.Println("Connected to Postgres")
 			return connection
