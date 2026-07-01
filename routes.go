@@ -22,5 +22,15 @@ func (app *Config) routes() http.Handler {
 	mux.Post("/register", app.PostRegisterPage)
 	mux.Get("/activate", app.ActivateAccount)
 
+	mux.Get("/test-email", func(w http.ResponseWriter, r *http.Request) {
+		msg := Message{
+			To:      "me@here.com",
+			Subject: "Test Email",
+			Data:    "hello world",
+		}
+
+		app.sendEmail(msg)
+	})
+
 	return mux
 }
